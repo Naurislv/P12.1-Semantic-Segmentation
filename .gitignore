@@ -101,3 +101,8 @@ ENV/
 .mypy_cache/
 
 RUNS/
+
+# Data
+runs/
+data/vgg_fcn
+logdir/
