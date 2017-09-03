@@ -4,9 +4,9 @@ Project is about labeling the pixels of a road in images using a Fully Convoluti
 
 # Results
 
-### Testing results using [helpers.py](helpers.py) project testing function
+### Testing results using [helper.py](helper.py) project testing function
 
-You can see that there are some really good results and some not that good. There (of-course) are much more job to do to improve results but I would start with bigger dataset.
+You can see that there are some really good results and some not that good. There (of-course) are much more job to do to improve results but I would start with larger dataset.
 
 ![test_result_0](test_results/um_000005.png)
 ![test_result_1](test_results/um_000018.png)
@@ -31,7 +31,7 @@ You can see that there are some really good results and some not that good. Ther
 
 Make sure you are using [Python 3.x](https://www.python.org/)
 
-Install Python dependecies using requirements.txt. If you are using Tensorflow compiled from sources then remove tensorflow line from requirements.
+Install Python dependecies using [requirements.txt](requirements.txt). If you are using Tensorflow compiled from sources then remove tensorflow line from requirements.
 
 ```pip install --upgrade -r requirements.txt```
 
@@ -105,7 +105,7 @@ python main.py --mode train --test_name MyFirstTest --learning_rate 1e-6 --batch
 
 Note that `--image_shape` is not original image shape but shape you want the original to be resized before feeding it to NN.
 
-Once training is completed FCN model will be saved in `./data/vgg_fcn/` directory and script will run [helpers.py](helpers.py) `gen_test_output` testing and results will be saved in `./runs` directory.
+Once training is completed FCN model will be saved in `./data/vgg_fcn/` directory and script will run [helper.py](helper.py) `gen_test_output` testing and results will be saved in `./runs` directory.
 
 ### Monitoring
 
@@ -144,8 +144,6 @@ python main.py --mode inference_test --pb_path path-to-opmized-protobuf-model
 ```
 
 # Description
-
-### VGG16 and VGG16 FCN
 
 VGG16 in numbers           |  VGG16 FCN8s
 :-------------------------:|:-------------------------:
