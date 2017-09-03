@@ -15,9 +15,9 @@ You can see that there are some really good results and some not that good. Ther
 ![test_result_4](test_results/uu_000025.png)
 ![test_result_5](test_results/uu_000030.png)
 
-### Images and label masks feeded into neural NN, plotted in Tensorboard. In each window there are three images
+### Images and label masks feeded into NN, plotted in Tensorboard. In each window there are three images
 
-1. Augmented input image
+1. [Augmented](#input-image-augmentation) input image (in these examples you can spot brightness reduction, rotations, little blur)
 2. Label mask
 3. NN output
 
@@ -148,3 +148,14 @@ python main.py --mode inference_test --pb_path path-to-opmized-protobuf-model
 VGG16 in numbers           |  VGG16 FCN8s
 :-------------------------:|:-------------------------:
 ![net architecture](images/vgg16_in_numbers.png)  |  ![net architecture](images/vgg16_fcn_architecture.png)
+
+## Input image augmentation
+
+In our case we have small dataset therefore we need deal with overfitting. One effective way to do that is augment images before NN. For example flip image vertically and for NN it would be completely new input, doing this alone we increase dataset size by factor of 2. You can check all augmentation functions and their descriptions in [augmentation.py](augmentation.py) and how it's being used in [helper.py](helper.py).
+
+ - random_brightness: randomly will either add or subtract pixel values in range -50 .. 40, applied to batch
+ - random_noise: 50% chance that random Gausian noise will be applied to batch
+ - random_blur: randomly blur single image with cv2.GaussianBlur() in range 0 .. 5
+ - random_flip: 50% chance that single image and corresponding mask will be flipped vertically
+ - random_shifts: randomly shifts single image and corresponding mask up or down and to left or right. Horizontal shifts -20 .. 20 px, Vertical shifts -35 .. 35 px
+ - random_rotations: randomly rotates single image and corresponding mask in range -6 .. 6 degrees
