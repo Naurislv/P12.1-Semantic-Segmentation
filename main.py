@@ -245,7 +245,8 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
 
             counter += 1
             end_time = time.time() - start_time
-            logging.info('[Time: %.3f] Epoch: %d, Batch: %d Loss: %f', end_time, epch + 1, i + 1, loss)
+            logging.info('[Time: %.3f] Epoch: %d, Batch: %d Loss: %f',
+                         end_time, epch + 1, i + 1, loss)
 
         logging.info('Epoch %d done!', epch + 1)
 

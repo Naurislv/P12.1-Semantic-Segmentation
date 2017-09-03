@@ -2,7 +2,32 @@
 
 In this project, I'm labeling the pixels of a road in images using a Fully Convolutional Network (FCN) in TensorFlow and monitoring/debuging using Tensorboard.
 
-## Project rquirements
+# Results
+
+## Testing results using [helpers.py](helpers.py) project testing function
+
+You can see that there are some really good results and some not that good. There (of-course) are much more job to do to improve results but I would start with bigger dataset.
+
+![test_result_0](test_results/um_000005.png)
+![test_result_1](test_results/um_000018.png)
+![test_result_2](test_results/um_000032.png)
+![test_result_3](test_results/uu_000010.png)
+![test_result_4](test_results/uu_000025.png)
+![test_result_5](test_results/uu_000030.png)
+
+## Images and label masks feeded into neural NN, plotted in Tensorboard. In each window there are three images
+
+1. Augmented input image
+2. Label mask
+3. NN output
+
+![tensorboard_images](images/tensorboard_images.png)
+
+## Training loss during one of the training sessions, plotted in Tensorboard
+
+![training_loss](images/training_loss.png)
+
+# Project rquirements
 
 Make sure you are using [Python 3.x](https://www.python.org/)
 
@@ -23,7 +48,7 @@ Or install Python dependecies manually:
 
 Download the [Kitti Road dataset](http://www.cvlibs.net/datasets/kitti/eval_road.php) from [here](http://www.cvlibs.net/download.php?file=data_road.zip).  Extract the dataset in the `data` folder.  This will create the folder `data_road` with all the training a test images.
 
-## Getting ready
+# Running project
 
 Run `python main.py --help` to see project options. Output should look like this:
 
@@ -118,14 +143,7 @@ __TODO:__ Run inference model on video and monitor time and visual results.
 python main.py --mode inference_test --pb_path path-to-opmized-protobuf-model
 ```
 
-### Submission
-1. Ensure you've passed all the unit tests.
-2. Ensure you pass all points on [the rubric](https://review.udacity.com/#!/rubrics/989/view).
-3. Submit the following in a zip file.
- - `helper.py`
- - `main.py`
- - `project_tests.py`
- - Newest inference images from `runs` folder
+# Description
 
 ### VGG16 and VGG16 FCN
 
