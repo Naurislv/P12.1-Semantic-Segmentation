@@ -106,3 +106,4 @@ RUNS/
 runs/
 data/vgg_fcn
 logdir/
+.directory
