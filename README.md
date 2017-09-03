@@ -1,10 +1,10 @@
 # Semantic Segmentation
 
-In this project, I'm labeling the pixels of a road in images using a Fully Convolutional Network (FCN) in TensorFlow and monitoring/debuging using Tensorboard.
+Project is about labeling the pixels of a road in images using a Fully Convolutional Network (FCN). Project is done in Python 3.6, DNN framework TensorFlow and monitoring/debuging done by Tensorboard and Visual Studio Code.
 
 # Results
 
-## Testing results using [helpers.py](helpers.py) project testing function
+### Testing results using [helpers.py](helpers.py) project testing function
 
 You can see that there are some really good results and some not that good. There (of-course) are much more job to do to improve results but I would start with bigger dataset.
 
@@ -15,7 +15,7 @@ You can see that there are some really good results and some not that good. Ther
 ![test_result_4](test_results/uu_000025.png)
 ![test_result_5](test_results/uu_000030.png)
 
-## Images and label masks feeded into neural NN, plotted in Tensorboard. In each window there are three images
+### Images and label masks feeded into neural NN, plotted in Tensorboard. In each window there are three images
 
 1. Augmented input image
 2. Label mask
@@ -23,7 +23,7 @@ You can see that there are some really good results and some not that good. Ther
 
 ![tensorboard_images](images/tensorboard_images.png)
 
-## Training loss during one of the training sessions, plotted in Tensorboard
+### Training loss during one of the training sessions, plotted in Tensorboard
 
 ![training_loss](images/training_loss.png)
 
