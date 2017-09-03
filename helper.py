@@ -1,16 +1,21 @@
+# Standard imports
 import re
 import random
-import numpy as np
 import os.path
-import scipy.misc
 import shutil
 import zipfile
 import time
-import tensorflow as tf
 from glob import glob
 from urllib.request import urlretrieve
-from tqdm import tqdm
 
+# Local imports
+import augmentation
+
+# Dependecy imports
+import numpy as np
+import scipy.misc
+import tensorflow as tf
+from tqdm import tqdm
 
 class DLProgress(tqdm):
     last_block = 0
@@ -65,16 +70,19 @@ def gen_batch_function(data_folder, image_shape):
     :param image_shape: Tuple - Shape of image
     :return:
     """
+
     def get_batches_fn(batch_size):
         """
         Create batches of training data
         :param batch_size: Batch Size
         :return: Batches of training data
         """
+
         image_paths = glob(os.path.join(data_folder, 'image_2', '*.png'))
         label_paths = {
             re.sub(r'_(lane|road)_', '_', os.path.basename(path)): path
             for path in glob(os.path.join(data_folder, 'gt_image_2', '*_road_*.png'))}
+        
         background_color = np.array([255, 0, 0])
 
         random.shuffle(image_paths)
@@ -138,3 +146,24 @@ def save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_p
         sess, logits, keep_prob, input_image, os.path.join(data_dir, 'data_road/testing'), image_shape)
     for name, image in image_outputs:
         scipy.misc.imsave(os.path.join(output_dir, name), image)
+
+def preprocessing(images, labels):
+    """Preprocess images and labels for training."""
+
+    # Pixel value manipulations
+    images, _ = augmentation.RANDOM_BRIGHTNESS(images, min_bright=-50, max_bright=40)
+    images, _ = augmentation.RANDOM_NOISE(images, amount=15, noise_chance=0.5)
+
+    for idx, (img, lbl) in enumerate(zip(images, labels)):
+
+        im_augm, _ = augmentation.RANDOM_BLUR(img, blur_range=(0, 5), many=False)
+
+        # Geometric manipulations
+        im_augm, lbl_augm = augmentation.RANDOM_FLIP(im_augm, lbl)
+        im_augm, lbl_augm, _ = augmentation.RANDOM_SHIFTS(im_augm, lbl_augm, h_shift=40, v_shift=70)
+        im_augm, lbl_augm, _ = augmentation.RANDOM_ROTATIONS(im_augm, label=lbl_augm, degree=6)
+
+        images[idx] = im_augm
+        labels[idx] = lbl_augm
+
+    return images, labels
